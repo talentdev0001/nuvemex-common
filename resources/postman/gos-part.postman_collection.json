@@ -11,7 +11,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/hints?partNum=41216&field=supplier",
+					"raw": "{{url}}/hints?partNum=bav99&field=supplier",
 					"host": [
 						"{{url}}"
 					],
@@ -21,7 +21,7 @@
 					"query": [
 						{
 							"key": "partNum",
-							"value": "41216"
+							"value": "bav99"
 						},
 						{
 							"key": "field",
@@ -38,7 +38,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/details?partId=FTR_715113c0de78810109882c68ce501fa4",
+					"raw": "{{url}}/details?partId=VRC_d40b11ad9287c3bb142e09ad74eb9474",
 					"host": [
 						"{{url}}"
 					],
@@ -48,7 +48,7 @@
 					"query": [
 						{
 							"key": "partId",
-							"value": "FTR_715113c0de78810109882c68ce501fa4"
+							"value": "VRC_d40b11ad9287c3bb142e09ad74eb9474"
 						}
 					]
 				}
@@ -61,7 +61,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{url}}/search?sort=-inStock,price&partNum=41-2-16&supplier=mouser&inStock=6000",
+					"raw": "{{url}}/search?sort=-inStock,price&partNum=ga12",
 					"host": [
 						"{{url}}"
 					],
@@ -75,15 +75,17 @@
 						},
 						{
 							"key": "partNum",
-							"value": "41-2-16"
+							"value": "ga12"
 						},
 						{
 							"key": "supplier",
-							"value": "mouser"
+							"value": "mouser",
+							"disabled": true
 						},
 						{
 							"key": "inStock",
-							"value": "6000"
+							"value": "6000",
+							"disabled": true
 						}
 					]
 				}
