@@ -1,0 +1,4 @@
+log:
+  app: gos-part
+  level: error
+  writers:

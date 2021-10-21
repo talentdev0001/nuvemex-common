@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  ci:
+    build:
+      context: .
+      dockerfile: .ci.Dockerfile
+    container_name: gos-part-app
+    volumes:
+      - ~/.ssh/id_rsa:/root/.ssh/id_rsa
+    environment:
+      - GO111MODULE=on
+      - app_env=testing
+
+      - AWS_ACCESS_KEY_ID=test
+      - AWS_SECRET_ACCESS_KEY=test
+      - AWS_REGION=eu-central-1
+    networks:
+      - gos-part
+
+networks:
+  gos-part:
+    driver: bridge

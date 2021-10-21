@@ -1,0 +1,6 @@
+gos-part:
+  - Overview: index.md
+  - Lambdas:
+      - search: search.md
+      - details: details.md
+      - hinter: hinter.md

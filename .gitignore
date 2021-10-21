@@ -1,0 +1,14 @@
+.idea/
+*.iml
+vendor/
+build/
+./config/dev.yml
+.data/
+.localstack/
+.env
+.testCoverage.txt
+/.build
+.vscode
+.~lock*
+.DS_Store
+resources/config/goseanto*.yml

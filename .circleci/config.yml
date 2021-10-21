@@ -1,0 +1,104 @@
+version: 2.1
+
+commands:
+  install-ci-deps:
+    steps:
+      - run:
+          name: Install ci deps
+          command: |
+            pip3 -q install --upgrade pip && \
+              pip3 -q install awscli boto3
+
+            aws s3 sync ${BUILD_UTILS_BUCKET_NAME} ${BUILD_UTILS_LOCAL_FOLDER}
+            sh ${BUILD_UTILS_LOCAL_FOLDER}/scripts/fix-scripts-perms.sh
+
+  go-test:
+    steps:
+      - run:
+          name: Test
+          command: |
+            docker-compose build
+            docker-compose run --rm ci make test
+
+  deploy:
+    steps:
+      - run:
+          name: Make zip packages
+          command: |
+            export GOPATH=/home/circleci/.go_workspace
+            app_env=${DEPLOY_ENV_NAME} make package
+
+      - run:
+          name: Prepare folder before sync with S3
+          command: |
+            cd .build && mkdir sync
+            lambda_zips=(`ls -1 *.zip`)
+            mv "${lambda_zips[@]}" sync
+            echo "export lambda_zips='${lambda_zips[@]}'" >> $BASH_ENV
+      - run:
+          name: Sync functions
+          command: |
+            eval $(${BUILD_UTILS_LOCAL_FOLDER}/scripts/assume-role.sh \
+              --env ${DEPLOY_ENV_NAME} \
+              --role-name devops)
+
+            STORAGE_BUCKET=$(${BUILD_UTILS_LOCAL_FOLDER}/scripts/get-ssm-value.sh --name /s3/lambdas/name)
+
+            aws s3 sync .build/sync  s3://${STORAGE_BUCKET}/${APP_NAME}
+
+            for lambda_zip in ${lambda_zips[@]}; do
+              aws lambda update-function-code \
+                --function-name "${APP_NAME}-${lambda_zip%%.zip}" \
+                --s3-bucket "${STORAGE_BUCKET}"  \
+                --s3-key "${APP_NAME}/${lambda_zip}" \
+                --region "${AWS_REGION}"
+            done
+
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202107-02
+    steps:
+      - checkout
+      - install-ci-deps
+      - go-test
+
+  deploy-prod:
+    environment:
+      APP_NAME: "gos-part"
+      DEPLOY_ENV_NAME: "prod"
+    machine:
+      image: ubuntu-2004:202107-02
+    steps:
+      - checkout
+      - install-ci-deps
+      - deploy
+
+  deploy-stg:
+    environment:
+      APP_NAME: "gos-part"
+      DEPLOY_ENV_NAME: "stg"
+    machine:
+      image: ubuntu-2004:202107-02
+    steps:
+      - checkout
+      - install-ci-deps
+      - deploy
+
+workflows:
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy-prod:
+          requires:
+            - build
+          filters:
+              branches:
+                only: master
+
+      - deploy-stg:
+          requires:
+            - build
+          filters:
+            branches:
+              only: develop

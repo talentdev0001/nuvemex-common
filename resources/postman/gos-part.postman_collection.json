@@ -1,0 +1,94 @@
+{
+	"info": {
+		"_postman_id": "0cf64db2-b273-47c2-88da-52c16d74098f",
+		"name": "gos-part",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/hints",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/hints?partNum=41216&field=supplier",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"hints"
+					],
+					"query": [
+						{
+							"key": "partNum",
+							"value": "41216"
+						},
+						{
+							"key": "field",
+							"value": "supplier"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/details?partId=FTR_715113c0de78810109882c68ce501fa4",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"details"
+					],
+					"query": [
+						{
+							"key": "partId",
+							"value": "FTR_715113c0de78810109882c68ce501fa4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/search?sort=-inStock,price&partNum=41-2-16&supplier=mouser&inStock=6000",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "-inStock,price"
+						},
+						{
+							"key": "partNum",
+							"value": "41-2-16"
+						},
+						{
+							"key": "supplier",
+							"value": "mouser"
+						},
+						{
+							"key": "inStock",
+							"value": "6000"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
