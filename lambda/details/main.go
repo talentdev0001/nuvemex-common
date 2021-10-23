@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	handler := part.MustDetailsLambda(part.ProvideAppConfig("."))
+	handler := part.MustDetailsLambda(part.MustConfig())
 
 	defer handler.Logger.Await(part.LogFlushWait)
 	lambda.Start(handler.Handle)

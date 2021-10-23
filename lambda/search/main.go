@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	handler := part.MustSearchLambda(part.ProvideAppConfig("."))
+	handler := part.MustSearchLambda(part.MustConfig())
 
 	defer handler.Logger.Await(part.LogFlushWait)
 	lambda.Start(handler.Handle)

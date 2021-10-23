@@ -23,20 +23,20 @@ build: clean
 	GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o ${build_dir}/hinter ./lambda/hinter/main.go
 	GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o ${build_dir}/details ./lambda/details/main.go
 
-	mkdir -p ${build_dir}/config
+	mkdir -p ${build_dir}/resources/config
 
 	# copy goseanto configs
-	cp ${pkg_path}/${goseanto_repo}@${goseanto_version}/resources/config/config.yml ${build_dir}/config/goseanto.yml
-	cp ${pkg_path}/${goseanto_repo}@${goseanto_version}/resources/config/${env}.yml ${build_dir}/config/goseanto-${env}.yml
+	cp ${pkg_path}/${goseanto_repo}@${goseanto_version}/resources/config/config.yml ${build_dir}/resources/config/goseanto.yml
+	cp ${pkg_path}/${goseanto_repo}@${goseanto_version}/resources/config/${env}.yml ${build_dir}/resources/config/goseanto-${env}.yml
 
-	cp ./resources/config/config.yml ${build_dir}/config/
-	cp ./resources/config/${env}.yml ${build_dir}/config/${env}.yml
+	cp ./resources/config/config.yml ${build_dir}/resources/config/
+	cp ./resources/config/${env}.yml ${build_dir}/resources/config/${env}.yml
 
 package: build
 	@cd ${build_dir} && \
-		zip -q -j -r search.zip ./search ./config/ && rm search && \
-		zip -q -j -r hinter.zip ./hinter ./config/ && rm hinter && \
-		zip -q -j -r details.zip ./details ./config/ && rm details
+		zip -q -r search.zip ./search ./resources/ && rm search && \
+		zip -q -r hinter.zip ./hinter ./resources/ && rm hinter && \
+		zip -q -r details.zip ./details ./resources/ && rm details
 
 test:
 	go mod download

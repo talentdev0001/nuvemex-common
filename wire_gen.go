@@ -6,7 +6,6 @@
 package part
 
 import (
-	"errors"
 	"fmt"
 	"github.com/Montrealist-cPunto/commons/config"
 	"github.com/Montrealist-cPunto/commons/log"
@@ -17,10 +16,9 @@ import (
 
 // Injectors from wire.go:
 
-func MustSearchLambda(appConfig2 *AppConfig) *SearchLambda {
-	config := ProvideLibConfig(appConfig2)
-	searchService := goseanto.MustSearchService(config)
-	logger := log.MustLogger(config)
+func MustSearchLambda(appConfig2 *config.Config) *SearchLambda {
+	searchService := goseanto.MustSearchService(appConfig2)
+	logger := log.MustLogger(appConfig2)
 	searchLambda := &SearchLambda{
 		Service: searchService,
 		Logger:  logger,
@@ -28,10 +26,9 @@ func MustSearchLambda(appConfig2 *AppConfig) *SearchLambda {
 	return searchLambda
 }
 
-func MustHinterLambda(appConfig2 *AppConfig) *HinterLambda {
-	config := ProvideLibConfig(appConfig2)
-	hinter := goseanto.MustHinterService(config)
-	logger := log.MustLogger(config)
+func MustHinterLambda(appConfig2 *config.Config) *HinterLambda {
+	hinter := goseanto.MustHinterService(appConfig2)
+	logger := log.MustLogger(appConfig2)
 	hinterLambda := &HinterLambda{
 		Service: hinter,
 		Logger:  logger,
@@ -39,10 +36,9 @@ func MustHinterLambda(appConfig2 *AppConfig) *HinterLambda {
 	return hinterLambda
 }
 
-func MustDetailsLambda(appConfig2 *AppConfig) *DetailsLambda {
-	config := ProvideLibConfig(appConfig2)
-	searchService := goseanto.MustSearchService(config)
-	logger := log.MustLogger(config)
+func MustDetailsLambda(appConfig2 *config.Config) *DetailsLambda {
+	searchService := goseanto.MustSearchService(appConfig2)
+	logger := log.MustLogger(appConfig2)
 	detailsLambda := &DetailsLambda{
 		Service: searchService,
 		Logger:  logger,
@@ -52,33 +48,15 @@ func MustDetailsLambda(appConfig2 *AppConfig) *DetailsLambda {
 
 // wire.go:
 
-var onceLibConfig sync.Once
-
-var libConfig *config.Config
-
-func ProvideLibConfig(appConfig2 *AppConfig) *config.Config {
-	if libConfig == nil {
-		panic(errors.New("libConfig not inited"))
-	}
-	return libConfig
-}
-
 var onceAppConfig sync.Once
 
-var appConfig *AppConfig
+var appConfig *config.Config
 
-func ProvideAppConfig(dir string) *AppConfig {
+func MustConfig() *config.Config {
 	onceAppConfig.Do(func() {
-		cfg := config.LoadFromDirectory(dir)
-		appConfig = &AppConfig{
-			Config: cfg,
-		}
-	})
-	onceLibConfig.Do(func() {
-		libConfig = config.LoadFromDirectory(dir,
-			"goseanto.yml", fmt.Sprintf("goseanto-%s.yml", os.Getenv("app_env")))
-
-		_ = libConfig.MergeAt(appConfig.Config.Koanf, "log")
+		appConfig = config.LoadFromDirectory("./resources/config",
+			"goseanto.yml", fmt.Sprintf("goseanto-%s.yml", os.Getenv("app_env")), "config.yml", fmt.Sprintf("%s.yml", os.Getenv("app_env")),
+		)
 	})
 
 	return appConfig

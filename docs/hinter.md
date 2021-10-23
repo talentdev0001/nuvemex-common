@@ -1,7 +1,15 @@
 # Hinter
 
 ## About
-Provide aggregated data based on search term
+
+Provides suggestion results based on a keyword.<br/>
+This is a wrap around `elasticsearch.go` in order to provide different options
+to search for along with a ready to inject service.
+
+Suppliers can be passed through the filters to limit the results.
+
+Hints are sorted by score from `elasticsearch.go`.<br/><br/>
+
 
 **Method:** GET<br>
 **Access:** Public<br>

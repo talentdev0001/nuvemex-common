@@ -3,7 +3,6 @@
 package part
 
 import (
-	"errors"
 	"fmt"
 	"github.com/Montrealist-cPunto/commons/config"
 	"github.com/Montrealist-cPunto/commons/log"
@@ -13,65 +12,38 @@ import (
 	"sync"
 )
 
-var onceLibConfig sync.Once
-var libConfig *config.Config
-
-func ProvideLibConfig(appConfig *AppConfig) *config.Config {
-	if libConfig == nil {
-		panic(errors.New("libConfig not inited"))
-	}
-	return libConfig
-}
-
 var onceAppConfig sync.Once
-var appConfig *AppConfig
+var appConfig *config.Config
 
-func ProvideAppConfig(dir string) *AppConfig {
+func MustConfig() *config.Config {
 	onceAppConfig.Do(func() {
-		cfg := config.LoadFromDirectory(dir)
-		appConfig = &AppConfig{
-			Config: cfg,
-		}
-	})
-	onceLibConfig.Do(func() {
-		libConfig = config.LoadFromDirectory(dir,
+		appConfig = config.LoadFromDirectory("./resources/config",
 			"goseanto.yml",
-			fmt.Sprintf("goseanto-%s.yml", os.Getenv("app_env")))
-		// overwrite parent config
-		_ = libConfig.MergeAt(appConfig.Config.Koanf, "log")
+			fmt.Sprintf("goseanto-%s.yml", os.Getenv("app_env")),
+			"config.yml",
+			fmt.Sprintf("%s.yml", os.Getenv("app_env")),
+		)
 	})
 
 	return appConfig
 }
 
-//func provideSearchConfig(cfg *AppConfig) *SearchConfig {
-//	serviceConfig := &SearchConfig{}
-//	err := cfg.Unmarshal("app.search", serviceConfig)
-//	if err != nil {
-//		panic(err)
-//	}
-//	return serviceConfig
-//}
-
-func MustSearchLambda(appConfig *AppConfig) *SearchLambda {
+func MustSearchLambda(appConfig *config.Config) *SearchLambda {
 	panic(wire.Build(
-		ProvideLibConfig,
 		goseanto.MustSearchService,
 		log.MustLogger,
 		wire.Struct(new(SearchLambda), "*")))
 }
 
-func MustHinterLambda(appConfig *AppConfig) *HinterLambda {
+func MustHinterLambda(appConfig *config.Config) *HinterLambda {
 	panic(wire.Build(
-		ProvideLibConfig,
 		goseanto.MustHinterService,
 		log.MustLogger,
 		wire.Struct(new(HinterLambda), "*")))
 }
 
-func MustDetailsLambda(appConfig *AppConfig) *DetailsLambda {
+func MustDetailsLambda(appConfig *config.Config) *DetailsLambda {
 	panic(wire.Build(
-		ProvideLibConfig,
 		goseanto.MustSearchService,
 		log.MustLogger,
 		wire.Struct(new(DetailsLambda), "*")))
