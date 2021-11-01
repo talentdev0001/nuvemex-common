@@ -19,9 +19,9 @@ deps:
 
 build: clean
 	if [ "${env}" = "" ]; then echo "Please set app_env"; exit 1; fi;
-	GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o ${build_dir}/search ./lambda/search/main.go
-	GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o ${build_dir}/hinter ./lambda/hinter/main.go
-	GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o ${build_dir}/details ./lambda/details/main.go
+	GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o ${build_dir}/search/bootstrap ./lambda/search/main.go
+	GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o ${build_dir}/hinter/bootstrap ./lambda/hinter/main.go
+	GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o ${build_dir}/details/bootstrap ./lambda/details/main.go
 
 	mkdir -p ${build_dir}/resources/config
 
@@ -32,11 +32,15 @@ build: clean
 	cp ./resources/config/config.yml ${build_dir}/resources/config/
 	cp ./resources/config/${env}.yml ${build_dir}/resources/config/${env}.yml
 
+	# duplicate resources in every lambda dir
+	cp -R ${build_dir}/resources ${build_dir}/search/resources
+	cp -R ${build_dir}/resources ${build_dir}/hinter/resources
+	cp -R ${build_dir}/resources ${build_dir}/details/resources
+
 package: build
-	@cd ${build_dir} && \
-		zip -q -r search.zip ./search ./resources/ && rm search && \
-		zip -q -r hinter.zip ./hinter ./resources/ && rm hinter && \
-		zip -q -r details.zip ./details ./resources/ && rm details
+	@cd ${build_dir}/search && zip -q -r search.zip ./bootstrap ./resources/ && mv search.zip ../
+	@cd ${build_dir}/hinter && zip -q -r hinter.zip ./bootstrap ./resources/ && mv hinter.zip ../
+	@cd ${build_dir}/details && zip -q -r details.zip ./bootstrap ./resources/ && mv details.zip ../
 
 test:
 	go mod download

@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	cirello.io/dynamolock/v2 v2.0.0-20210913150009-9b27c370a0ba // indirect
+	github.com/DataDog/datadog-lambda-go v1.3.0 // indirect
 	github.com/Montrealist-cPunto/commons v0.8.6
 	github.com/Montrealist-cPunto/goseanto v0.2.1
 	github.com/aws/aws-lambda-go v1.27.0
@@ -16,6 +17,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/sns v1.8.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sqs v1.9.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/translate v1.4.2 // indirect
+	github.com/cihub/seelog v0.0.0-20170130134532-f561c5e57575 // indirect
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
 	github.com/go-redis/redis_rate/v9 v9.1.2 // indirect
 	github.com/google/wire v0.5.0
@@ -27,4 +29,5 @@ require (
 	github.com/stretchr/testify v1.7.0
 	github.com/twmb/murmur3 v1.1.6 // indirect
 	golang.org/x/sys v0.0.0-20211020174200-9d6173849985 // indirect
+	gopkg.in/urfave/cli.v1 v1.20.0 // indirect
 )
