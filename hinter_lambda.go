@@ -3,13 +3,12 @@ package part
 import (
 	"encoding/json"
 	"github.com/Montrealist-cPunto/commons/log"
-	"github.com/Montrealist-cPunto/goseanto"
 	"github.com/aws/aws-lambda-go/events"
 	"strconv"
 )
 
 type HinterLambda struct {
-	Service *goseanto.Hinter
+	Service *Hinter
 	Logger  *log.Logger
 }
 
@@ -52,7 +51,7 @@ func (h *HinterLambda) Handle(request events.APIGatewayProxyRequest) (events.API
 		field = "partNum.raw"
 	}
 
-	results := h.Service.Get(&goseanto.HinterOptions{
+	results := h.Service.Get(&HinterOptions{
 		Field:      field,
 		PartNumber: keyword,
 		Limit:      limit,

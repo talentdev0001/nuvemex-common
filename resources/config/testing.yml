@@ -1,3 +1,7 @@
+aws:
+  elasticsearch:
+    endpoint: "http://localhost:3671"
+
 log:
   app: gos-part
   level: error

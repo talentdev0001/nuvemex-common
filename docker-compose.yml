@@ -1,21 +1,43 @@
 version: "3.7"
 services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    container_name: gos-part-elasticsearch
+    ports:
+      - "3671:9200"
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - gos-part-elasticsearch-data:/usr/share/elasticsearch/data
+    networks:
+      - gos-part
+
   ci:
     build:
       context: .
       dockerfile: .ci.Dockerfile
     container_name: gos-part-app
+    command: |
+      go run ./cli/elasticsearch.go
     volumes:
       - ~/.ssh/id_rsa:/root/.ssh/id_rsa
     environment:
       - GO111MODULE=on
       - app_env=testing
 
+      - elasticsearch_url=http://elasticsearch:9200
+
       - AWS_ACCESS_KEY_ID=test
       - AWS_SECRET_ACCESS_KEY=test
       - AWS_REGION=eu-central-1
     networks:
       - gos-part
+    depends_on:
+      - elasticsearch
+
+volumes:
+  gos-part-elasticsearch-data:
 
 networks:
   gos-part:

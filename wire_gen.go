@@ -9,12 +9,27 @@ import (
 	"fmt"
 	"github.com/Montrealist-cPunto/commons/config"
 	"github.com/Montrealist-cPunto/commons/log"
+	"github.com/Montrealist-cPunto/commons/queue"
 	"github.com/Montrealist-cPunto/goseanto"
 	"os"
 	"sync"
 )
 
 // Injectors from wire.go:
+
+func provideHinterService(cfg *config.Config) *Hinter {
+	elasticSearch := goseanto.MustElasticSearch(cfg)
+	queueQueue := queue.MustQueue(cfg)
+	v := goseanto.ProviderSuppliers(cfg)
+	logger := log.MustLogger(cfg)
+	hinter := &Hinter{
+		ElasticService: elasticSearch,
+		Queue:          queueQueue,
+		Suppliers:      v,
+		Logger:         logger,
+	}
+	return hinter
+}
 
 func MustSearchLambda(appConfig2 *config.Config) *SearchLambda {
 	searchService := goseanto.MustSearchService(appConfig2)
@@ -27,7 +42,7 @@ func MustSearchLambda(appConfig2 *config.Config) *SearchLambda {
 }
 
 func MustHinterLambda(appConfig2 *config.Config) *HinterLambda {
-	hinter := goseanto.MustHinterService(appConfig2)
+	hinter := MustHinterService(appConfig2)
 	logger := log.MustLogger(appConfig2)
 	hinterLambda := &HinterLambda{
 		Service: hinter,
@@ -60,4 +75,16 @@ func MustConfig() *config.Config {
 	})
 
 	return appConfig
+}
+
+var onceHinterService sync.Once
+
+var hinterService *Hinter
+
+func MustHinterService(cfg *config.Config) *Hinter {
+	onceHinterService.Do(func() {
+		hinterService = provideHinterService(cfg)
+	})
+
+	return hinterService
 }

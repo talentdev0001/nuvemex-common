@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/Montrealist-cPunto/commons/config"
 	"github.com/Montrealist-cPunto/commons/log"
+	"github.com/Montrealist-cPunto/commons/queue"
 	"github.com/Montrealist-cPunto/goseanto"
 	"github.com/google/wire"
 	"os"
@@ -28,6 +29,26 @@ func MustConfig() *config.Config {
 	return appConfig
 }
 
+var onceHinterService sync.Once
+var hinterService *Hinter
+
+func provideHinterService(cfg *config.Config) *Hinter {
+	panic(wire.Build(
+		goseanto.MustElasticSearch,
+		log.MustLogger,
+		queue.MustQueue,
+		goseanto.ProviderSuppliers,
+		wire.Struct(new(Hinter), "*")))
+}
+
+func MustHinterService(cfg *config.Config) *Hinter {
+	onceHinterService.Do(func() {
+		hinterService = provideHinterService(cfg)
+	})
+
+	return hinterService
+}
+
 func MustSearchLambda(appConfig *config.Config) *SearchLambda {
 	panic(wire.Build(
 		goseanto.MustSearchService,
@@ -37,7 +58,7 @@ func MustSearchLambda(appConfig *config.Config) *SearchLambda {
 
 func MustHinterLambda(appConfig *config.Config) *HinterLambda {
 	panic(wire.Build(
-		goseanto.MustHinterService,
+		MustHinterService,
 		log.MustLogger,
 		wire.Struct(new(HinterLambda), "*")))
 }

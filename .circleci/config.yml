@@ -18,7 +18,8 @@ commands:
           name: Test
           command: |
             docker-compose build
-            docker-compose run --rm ci make test
+            docker-compose run --rm ci bash -c "make install-resources && make test"
+            docker-compose stop
 
   deploy:
     steps:

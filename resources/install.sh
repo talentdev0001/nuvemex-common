@@ -2,6 +2,15 @@
 
 go=$(which go)
 curl=$(which curl)
+dockerCompose=$(which docker-compose)
+
+# copy default env vars
+if [ ! -f .env ]; then
+    cp .env.dist .env
+fi
+
+$dockerCompose build
+$dockerCompose up -d
 
 $go get github.com/google/wire/cmd/wire
 
@@ -15,6 +24,8 @@ $go mod download
 echo ""
 
 $go mod verify
+
+make elasticsearch
 
 # show result
 if [ $? -eq 0 ]; then

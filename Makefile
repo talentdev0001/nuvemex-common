@@ -11,6 +11,10 @@ goseanto_repo='!montrealist-c!punto/goseanto'
 goseanto_version=$(shell cat go.mod | grep -o '/goseanto v[0-9].[0-9].[0-9]' | cut -d' ' -f2)
 goseanto_resources="${goseanto_version}/resources/config"
 
+define with-env
+	@bash -c 'set -o allexport; source .env; set +o allexport; $(1)'
+endef
+
 clean:
 	rm -rf ${build_dir}
 
@@ -47,6 +51,7 @@ test:
 	cp ${pkg_path}/${goseanto_repo}@${goseanto_version}/resources/config/config.yml ./resources/config/goseanto.yml
 	cp ${pkg_path}/${goseanto_repo}@${goseanto_version}/resources/config/testing.yml ./resources/config/goseanto-testing.yml
 
+	@app_env=testing AWS_ACCESS_KEY_ID=test AWS_SECRET_ACCESS_KEY=test AWS_REGION=eu-central-1 \
 	go test -v \
 			-coverprofile .testCoverage.txt -count=1
 
@@ -57,6 +62,12 @@ wire:
 
 install:
 	@./resources/install.sh
+
+install-resources:
+	@./resources/install-resources.sh
+
+elasticsearch:
+	$(call with-env,go run ./cli/elasticsearch.go)
 
 docker-build:
 	@docker-compose build
