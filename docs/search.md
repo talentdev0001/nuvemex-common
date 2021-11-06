@@ -29,7 +29,10 @@ search:
   # new crawl will not be started earlier than this period
   cacheDuration: 10m
   partNumberTable: PartNumberStatus
-  supplierTable: Suppliers
+
+suppliers:
+    # service url providing suppliers list
+    url: "..."
 ```
 
 **Available sort parameters:**
