@@ -64,17 +64,6 @@ jobs:
       - install-ci-deps
       - go-test
 
-  deploy-nprod:
-    environment:
-      APP_NAME: "gos-part"
-      DEPLOY_ENV_NAME: "nprod"
-    machine:
-      image: ubuntu-2004:202107-02
-    steps:
-      - checkout
-      - install-ci-deps
-      - deploy
-
   deploy-prod:
     environment:
       APP_NAME: "gos-part"
@@ -101,12 +90,12 @@ workflows:
   build-and-deploy:
     jobs:
       - build
-      - deploy-nprod:
+      - deploy-prod:
           requires:
             - build
           filters:
-            branches:
-              only: master
+              branches:
+                only: master
 
       - deploy-stg:
           requires:
