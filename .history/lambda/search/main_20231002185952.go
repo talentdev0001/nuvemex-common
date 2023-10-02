@@ -2,8 +2,8 @@ package main
 
 import (
 	ddlambda "github.com/DataDog/datadog-lambda-go"
+	part "github.com/Montrealist-cPunto/gos-part"
 	"github.com/aws/aws-lambda-go/lambda"
-	part "github.com/nuvemex/gos-part"
 )
 
 func main() {

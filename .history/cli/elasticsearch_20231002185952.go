@@ -1,11 +1,10 @@
 package main
 
 import (
+	"github.com/Montrealist-cPunto/commons/elasticsearch"
+	part "github.com/Montrealist-cPunto/gos-part"
+	"github.com/Montrealist-cPunto/goseanto"
 	"strings"
-
-	"github.com/nuvemex/commons/elasticsearch"
-	part "github.com/nuvemex/gos-part"
-	"github.com/nuvemex/goseanto"
 )
 
 func main() {

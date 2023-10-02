@@ -1,4 +1,4 @@
-module github.com/nuvemex/gos-part
+module github.com/Montrealist-cPunto/gos-part
 
 go 1.16
 

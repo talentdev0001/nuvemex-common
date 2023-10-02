@@ -3,11 +3,10 @@ package part
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
-
+	"github.com/Montrealist-cPunto/commons/log"
+	"github.com/Montrealist-cPunto/goseanto"
 	"github.com/aws/aws-lambda-go/events"
-	"github.com/nuvemex/commons/log"
-	"github.com/nuvemex/goseanto"
+	"net/http"
 )
 
 type DetailsLambda struct {

@@ -3,8 +3,8 @@ package main
 import (
 	"strings"
 
+	part "github.com/Montrealist-cPunto/gos-part"
 	"github.com/nuvemex/commons/elasticsearch"
-	part "github.com/nuvemex/gos-part"
 	"github.com/nuvemex/goseanto"
 )
 

@@ -1,6 +1,6 @@
 package part
 
-import "github.com/nuvemex/goseanto"
+import "github.com/Montrealist-cPunto/goseanto"
 
 type SearchConfig struct {
 	CacheDuration string

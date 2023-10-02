@@ -1,11 +1,10 @@
 package part
 
 import (
+	"github.com/Montrealist-cPunto/commons/log"
+	"github.com/Montrealist-cPunto/commons/queue"
+	"github.com/Montrealist-cPunto/goseanto"
 	"strings"
-
-	"github.com/nuvemex/commons/log"
-	"github.com/nuvemex/commons/queue"
-	"github.com/nuvemex/goseanto"
 )
 
 type Hinter struct {

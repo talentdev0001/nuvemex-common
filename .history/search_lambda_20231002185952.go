@@ -2,12 +2,11 @@ package part
 
 import (
 	"encoding/json"
+	"github.com/Montrealist-cPunto/commons/log"
+	"github.com/Montrealist-cPunto/goseanto"
+	"github.com/aws/aws-lambda-go/events"
 	"strconv"
 	"strings"
-
-	"github.com/aws/aws-lambda-go/events"
-	"github.com/nuvemex/commons/log"
-	"github.com/nuvemex/goseanto"
 )
 
 type SearchLambda struct {

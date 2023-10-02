@@ -1,9 +1,8 @@
 package part
 
 import (
-	"testing"
-
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 func TestDI(t *testing.T) {

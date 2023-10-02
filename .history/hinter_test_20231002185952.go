@@ -1,15 +1,14 @@
 package part_test
 
 import (
+	"github.com/Montrealist-cPunto/commons/elasticsearch"
+	"github.com/Montrealist-cPunto/commons/math"
+	part "github.com/Montrealist-cPunto/gos-part"
+	"github.com/Montrealist-cPunto/goseanto"
+	"github.com/stretchr/testify/assert"
 	"strings"
 	"testing"
 	"time"
-
-	"github.com/nuvemex/commons/elasticsearch"
-	"github.com/nuvemex/commons/math"
-	part "github.com/nuvemex/gos-part"
-	"github.com/nuvemex/goseanto"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestHinter(t *testing.T) {

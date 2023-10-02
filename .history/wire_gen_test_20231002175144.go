@@ -13,3 +13,7 @@ func TestDI(t *testing.T) {
 		assert.Equal(t, "gos-part", cfg.String("app.name"))
 	})
 }
+
+func MustConfig() {
+	panic("unimplemented")
+}

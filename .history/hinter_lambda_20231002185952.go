@@ -2,10 +2,9 @@ package part
 
 import (
 	"encoding/json"
-	"strconv"
-
+	"github.com/Montrealist-cPunto/commons/log"
 	"github.com/aws/aws-lambda-go/events"
-	"github.com/nuvemex/commons/log"
+	"strconv"
 )
 
 type HinterLambda struct {

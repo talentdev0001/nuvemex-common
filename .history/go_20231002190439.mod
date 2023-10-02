@@ -1,4 +1,4 @@
-module github.com/nuvemex/gos-part
+module github.com/Montrealist-cPunto/gos-part
 
 go 1.16
 
@@ -6,7 +6,7 @@ require (
 	cirello.io/dynamolock/v2 v2.0.0-20210913150009-9b27c370a0ba // indirect
 	github.com/DataDog/datadog-lambda-go v1.3.0
 	github.com/nuvemex/commons v0.9.5
-	github.com/nuvemex/goseanto v0.5.4
+	github.com/nuvemex/goseanto v0.5.2
 	github.com/aws/aws-lambda-go v1.27.0
 	github.com/aws/aws-sdk-go v1.41.7 // indirect
 	github.com/aws/aws-sdk-go-v2/feature/dynamodb/expression v1.2.5 // indirect

@@ -1,18 +1,16 @@
-//go:build wireinject
-// +build wireinject
+//+build wireinject
 
 package part
 
 import (
 	"fmt"
+	"github.com/Montrealist-cPunto/commons/config"
+	"github.com/Montrealist-cPunto/commons/log"
+	"github.com/Montrealist-cPunto/commons/queue"
+	"github.com/Montrealist-cPunto/goseanto"
+	"github.com/google/wire"
 	"os"
 	"sync"
-
-	"github.com/google/wire"
-	"github.com/nuvemex/commons/config"
-	"github.com/nuvemex/commons/log"
-	"github.com/nuvemex/commons/queue"
-	"github.com/nuvemex/goseanto"
 )
 
 var onceAppConfig sync.Once
