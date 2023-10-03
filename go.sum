@@ -361,8 +361,9 @@ github.com/nats-io/jwt v0.3.0/go.mod h1:fRYCDE99xlTsqUzISS1Bi75UBJ6ljOJQOAAu5Vgl
 github.com/nats-io/nats.go v1.9.1/go.mod h1:ZjDU1L/7fJ09jvUSRVBR2e7+RnLiiIQyqyzEE/Zbp4w=
 github.com/nats-io/nkeys v0.1.0/go.mod h1:xpnFELMwJABBLVhffcfd1MZx6VsNRFpEugbxziKVo7w=
 github.com/nats-io/nuid v1.0.1/go.mod h1:19wcPz3Ph3q0Jbyiqsd0kePYG7A95tJPxeL+1OSON2c=
-github.com/nuvemex/commons v0.9.5 h1:ev4ciM/5UPvaMs79Wc8ceXkd4uvVL92TZYO0gyVo7Oc=
 github.com/nuvemex/commons v0.9.5/go.mod h1:6uc+Ni+DR67/LAKaH3ziQb9X4D6B1LKf1lbdV+a8xEM=
+github.com/nuvemex/commons v0.9.6 h1:pENMIXVrwNOQS0RFS16mrhJFKGQGCKO1s4as1LeMZdg=
+github.com/nuvemex/commons v0.9.6/go.mod h1:6uc+Ni+DR67/LAKaH3ziQb9X4D6B1LKf1lbdV+a8xEM=
 github.com/nuvemex/goseanto v0.5.5 h1:+WSgMoVTGF63OdrvmUFDWcaAa4bGOPS3g6Fgqna8/BQ=
 github.com/nuvemex/goseanto v0.5.5/go.mod h1:x7BmmdA9vZsQuccRDU7MlE8+cporQiFmXMn7mIrtFdA=
 github.com/nxadm/tail v1.4.4/go.mod h1:kenIhsEOeOJmVchQTgglprH7qJGnHDVpk1VPCcaMI8A=

@@ -17,7 +17,7 @@ require (
 	github.com/google/wire v0.5.0
 	github.com/joho/godotenv v1.4.0 // indirect
 	github.com/mitchellh/mapstructure v1.4.2 // indirect
-	github.com/nuvemex/commons v0.9.5
+	github.com/nuvemex/commons v0.9.6
 	github.com/nuvemex/goseanto v0.5.5
 	github.com/olivere/elastic/v7 v7.0.29 // indirect
 	github.com/rs/zerolog v1.25.0 // indirect
