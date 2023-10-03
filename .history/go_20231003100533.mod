@@ -8,10 +8,11 @@ require (
 	github.com/google/wire v0.5.0
 	github.com/nuvemex/commons v0.9.5
 	github.com/nuvemex/goseanto v0.5.5
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.7.2
 )
 
 require (
+	cirello.io/dynamolock/v2 v2.0.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.8.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.7.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ses v1.6.2 // indirect
