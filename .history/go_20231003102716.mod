@@ -21,7 +21,7 @@ require (
 	github.com/nuvemex/goseanto v0.5.5
 	github.com/olivere/elastic/v7 v7.0.29 // indirect
 	github.com/rs/zerolog v1.25.0 // indirect
-	github.com/stretchr/testify v1.8.4
+	github.com/stretchr/testify v1.7.0
 	github.com/twmb/murmur3 v1.1.6 // indirect
 	golang.org/x/sys v0.0.0-20211020174200-9d6173849985 // indirect
 )
