@@ -14,7 +14,7 @@ $dockerCompose up -d
 
 $go get github.com/google/wire/cmd/wire
 
-$go env -w GOPRIVATE=github.com/nuvemex
+$go env -w GOPRIVATE=github.com/Montrealist-cPunto
 
 # install linting
 $curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.23.3
