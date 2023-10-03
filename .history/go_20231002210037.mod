@@ -17,11 +17,8 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.7.0 // indirect
 	github.com/aws/aws-sdk-go-v2/service/ses v1.6.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/translate v1.4.2 // indirect
-	github.com/fsnotify/fsnotify v1.5.1 // indirect
 	github.com/joho/godotenv v1.4.0 // indirect
-	github.com/mitchellh/mapstructure v1.4.2 // indirect
 	github.com/olivere/elastic/v7 v7.0.29 // indirect
 	github.com/rs/zerolog v1.25.0 // indirect
 	github.com/twmb/murmur3 v1.1.6 // indirect
-	golang.org/x/sys v0.0.0-20211020174200-9d6173849985 // indirect
 )
