@@ -7,7 +7,7 @@ package_dir := ${build_dir}
 env := ${app_env}
 
 pkg_path="${GOPATH}/pkg/mod/github.com"
-goseanto_repo='nuvemex/goseanto'
+goseanto_repo='!montrealist-c!punto/goseanto'
 goseanto_version=$(shell cat go.mod | grep -o '/goseanto v[0-9].[0-9].[0-9]' | cut -d' ' -f2)
 goseanto_resources="${goseanto_version}/resources/config"
 
