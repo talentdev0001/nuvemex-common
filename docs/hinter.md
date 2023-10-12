@@ -69,7 +69,7 @@ elasticsearch:
 ## Response (supplier grouping)
 
 `/hints?partNum=41216&field=supplier`
-[Sample link](https://parts.nuvemex.com/hints?partNum=bav99&field=supplier)
+[Sample link](https://parts.stg.nuvemex.com/hints?partNum=bav99&field=supplier)
 
 ```json
 [

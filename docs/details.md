@@ -24,7 +24,7 @@ Provide item details by Elasticsearch ID
 
 `/details?partId=MSR_68efccbbdc0876989cafc5eca1c955ed`
 
-[Sample link](https://parts.nuvemex.com/details?partId=MSR_68efccbbdc0876989cafc5eca1c955ed)
+[Sample link](https://parts.stg.nuvemex.com/details?partId=MSR_68efccbbdc0876989cafc5eca1c955ed)
 
 ```json
 {
