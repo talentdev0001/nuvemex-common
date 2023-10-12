@@ -10,7 +10,6 @@ Suppliers can be passed through the filters to limit the results.
 
 Hints are sorted by score from `elasticsearch.go`.<br/><br/>
 
-
 **Method:** GET<br>
 **Access:** Public<br>
 **Query Parameters:** <br>
@@ -18,7 +17,6 @@ Hints are sorted by score from `elasticsearch.go`.<br/><br/>
 - `partNum`: part number <br>
 - `field`: which field to aggregate, default is `partNum.raw`, i.e. supplier <br>
 - `limit`: max number of results to return
-
 
 ## Dependencies
 
@@ -38,61 +36,62 @@ elasticsearch:
 
 `/hints?partNum=bav99`
 [Sample link](https://parts.cpunto.com/hints?partNum=bav99)
+
 ```json
 [
-    {
-        "value": "bav99",
-        "total": 32
-    },
-    {
-        "value": "bav99/8",
-        "total": 1
-    },
-    {
-        "value": "bav99tr",
-        "total": 1
-    },
-    {
-        "value": "bav99,215",
-        "total": 16
-    },
-    {
-        "value": "bav99,235",
-        "total": 18
-    },
-    {
-        "value": "bav99-13-f",
-        "total": 14
-    }
+  {
+    "value": "bav99",
+    "total": 32
+  },
+  {
+    "value": "bav99/8",
+    "total": 1
+  },
+  {
+    "value": "bav99tr",
+    "total": 1
+  },
+  {
+    "value": "bav99,215",
+    "total": 16
+  },
+  {
+    "value": "bav99,235",
+    "total": 18
+  },
+  {
+    "value": "bav99-13-f",
+    "total": 14
+  }
 ]
 ```
-
 
 ## Response (supplier grouping)
 
 `/hints?partNum=41216&field=supplier`
-[Sample link](https://parts.cpunto.com/hints?partNum=bav99&field=supplier)
+[Sample link](https://parts.stg.nuvemex.com/hints?partNum=bav99&field=supplier)
+
 ```json
 [
-    {
-        "value": "mouser",
-        "total": 158
-    },
-    {
-        "value": "future",
-        "total": 301
-    },
-    {
-        "value": "tti",
-        "total": 21
-    },
-    {
-        "value": "verical",
-        "total": 8
-    },
-    {
-        "value": "europe",
-        "total": 2
-    }
+  {
+    "value": "mouser",
+    "total": 158
+  },
+  {
+    "value": "future",
+    "total": 301
+  },
+  {
+    "value": "tti",
+    "total": 21
+  },
+  {
+    "value": "verical",
+    "total": 8
+  },
+  {
+    "value": "europe",
+    "total": 2
+  }
 ]
 ```

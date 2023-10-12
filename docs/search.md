@@ -13,8 +13,8 @@ Provide async search functionality
 - `supplier`: comma separated suppliers that must be present in results
 - `inStock`: min number of stock required, default is `0`
 
-
 ## Dependencies
+
 - Elasticsearch
 - SQS
 - DynamoDB
@@ -31,11 +31,12 @@ search:
   partNumberTable: PartNumberStatus
 
 suppliers:
-    # service url providing suppliers list
-    url: "..."
+  # service url providing suppliers list
+  url: "..."
 ```
 
 **Available sort parameters:**
+
 ```
 supplier
 manufacturer
@@ -47,70 +48,73 @@ inStock
 ```
 
 **Fails** (returns empty list) when:
+
 - term's length is not within `minLength` - `maxLength` config values
 - term contains characters NOT from `a-zA-Z0-9\-\.:;\s\(\)#=,\\/`
 
 ## Cache
+
 If DynamoDB cache record is older than `search_cacheDuration` - search term will be published to SQS crawler queue.<br>
 
 ## Response
 
 `/search?sort=-inStock,price&partNum=bav99&supplier=mouser&inStock=10`
-[Sample link](https://parts.cpunto.com/search?sort=-inStock,price&partNum=bav99&supplier=mouser&inStock=10)
+[Sample link](https://parts.stg.nuvemex.com/search?sort=-inStock,price&partNum=bav99&supplier=mouser&inStock=10)
+
 ```json
 {
-    "total": 200,
-    "progress": 0,
-    "isCompleted": false,
-    "duration": 0,
-    "results": [
+  "total": 200,
+  "progress": 0,
+  "isCompleted": false,
+  "duration": 0,
+  "results": [
+    {
+      "id": "MSR_68efccbbdc0876989cafc5eca1c955ed",
+      "partNum": "M81044/12-16-9",
+      "supplierPartNum": "650-M81044/12-16-9",
+      "manufacturer": "TE Connectivity / Raychem",
+      "supplier": "mouser",
+      "region": "none",
+      "description": "Hook-up Wire 16AWG 19x29 WH PRICE PER FT",
+      "dateCode": "none",
+      "inStock": 7649,
+      "minimumBuy": 1,
+      "multiple": 1,
+      "price": [
         {
-            "id": "MSR_68efccbbdc0876989cafc5eca1c955ed",
-            "partNum": "M81044/12-16-9",
-            "supplierPartNum": "650-M81044/12-16-9",
-            "manufacturer": "TE Connectivity / Raychem",
-            "supplier": "mouser",
-            "region": "none",
-            "description": "Hook-up Wire 16AWG 19x29 WH PRICE PER FT",
-            "dateCode": "none",
-            "inStock": 7649,
-            "minimumBuy": 1,
-            "multiple": 1,
-            "price": [
-                {
-                    "quantity": 1,
-                    "price": 0.55,
-                    "currency": "USD"
-                },
-                {
-                    "quantity": 5,
-                    "price": 0.453,
-                    "currency": "USD"
-                }
-            ],
-            "uploadedAt": "2021-01-24T22:31:56.747342446+01:00"
+          "quantity": 1,
+          "price": 0.55,
+          "currency": "USD"
         },
         {
-            "id": "mouser_b109adf785c557510a9af0d04c6c0833",
-            "partNum": "M81044/12-16-9",
-            "supplierPartNum": "650-M81044/12-16-9",
-            "manufacturer": "TE Connectivity / Raychem",
-            "supplier": "mouser",
-            "region": "none",
-            "description": "Hook-up Wire 16AWG 19x29 WH PRICE PER FT",
-            "dateCode": "none",
-            "inStock": 7649,
-            "minimumBuy": 1,
-            "multiple": 1,
-            "price": [
-                {
-                    "quantity": 1,
-                    "price": 0.55,
-                    "currency": "USD"
-                }
-            ],
-            "uploadedAt": "2021-01-26T23:35:38.768515184+01:00"
+          "quantity": 5,
+          "price": 0.453,
+          "currency": "USD"
         }
-    ]
+      ],
+      "uploadedAt": "2021-01-24T22:31:56.747342446+01:00"
+    },
+    {
+      "id": "mouser_b109adf785c557510a9af0d04c6c0833",
+      "partNum": "M81044/12-16-9",
+      "supplierPartNum": "650-M81044/12-16-9",
+      "manufacturer": "TE Connectivity / Raychem",
+      "supplier": "mouser",
+      "region": "none",
+      "description": "Hook-up Wire 16AWG 19x29 WH PRICE PER FT",
+      "dateCode": "none",
+      "inStock": 7649,
+      "minimumBuy": 1,
+      "multiple": 1,
+      "price": [
+        {
+          "quantity": 1,
+          "price": 0.55,
+          "currency": "USD"
+        }
+      ],
+      "uploadedAt": "2021-01-26T23:35:38.768515184+01:00"
+    }
+  ]
 }
 ```
