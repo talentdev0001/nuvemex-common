@@ -7,12 +7,11 @@ require (
 	github.com/aws/aws-lambda-go v1.27.0
 	github.com/google/wire v0.5.0
 	github.com/nuvemex/commons v0.9.6
-	github.com/nuvemex/goseanto v0.5.4
+	github.com/nuvemex/goseanto v0.5.5
 
 )
 
 require (
-	cirello.io/dynamolock/v2 v2.0.2 // indirect
 	github.com/aws/aws-sdk-go v1.41.7 // indirect
 	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.8.2 // indirect
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.16.1 // indirect
@@ -26,9 +25,7 @@ require (
 	github.com/mitchellh/mapstructure v1.4.2 // indirect
 	github.com/olivere/elastic/v7 v7.0.29 // indirect
 	github.com/rs/zerolog v1.25.0 // indirect
-	github.com/stretchr/objx v0.3.0 // indirect
-	github.com/stretchr/testify v1.7.0
+	github.com/stretchr/testify v1.8.4
 	github.com/twmb/murmur3 v1.1.6 // indirect
 	golang.org/x/sys v0.0.0-20211020174200-9d6173849985 // indirect
-	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
