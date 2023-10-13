@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.7.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.0
     container_name: gos-part-elasticsearch
     ports:
       - "3671:9200"
