@@ -35,7 +35,7 @@ elasticsearch:
 ## Response (part number grouping)
 
 `/hints?partNum=bav99`
-[Sample link](https://parts.cpunto.com/hints?partNum=bav99)
+[Sample link](https://parts.stg.nuvemex.com/hints?partNum=bav99)
 
 ```json
 [
