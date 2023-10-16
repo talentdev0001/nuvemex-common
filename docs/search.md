@@ -59,7 +59,9 @@ If DynamoDB cache record is older than `search_cacheDuration` - search term will
 ## Response
 
 `/search?sort=-inStock,price&partNum=bav99&supplier=mouser&inStock=10`
-[Sample link](https://parts.nuvemex.com/search?sort=-inStock,price&partNum=bav99&supplier=mouser&inStock=10)
+
+[Sample link](https://parts.stg.nuvemex.com/search?sort=-inStock,price&partNum=bav99&supplier=mouser&inStock=10)
+
 
 ```json
 {
